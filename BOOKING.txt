@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specify - Book Your Next Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4D44DB;
+            --accent: #FF6584;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: var(--dark);
+        }
+        
+        .event-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-chip {
+            transition: all 0.2s ease;
+        }
+        
+        .category-chip:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .booking-modal {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.3);
+        }
+        
+        .date-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-calendar-alt text-2xl text-purple-600"></i>
+                <span class="text-xl font-bold text-gray-800">Specify</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-purple-600 font-medium">Home</a>
+                <a href="#" class="text-gray-600 hover:text-purple-600 font-medium">Events</a>
+                <a href="#" class="text-gray-600 hover:text-purple-600 font-medium">Categories</a>
+                <a href="#" class="text-gray-600 hover:text-purple-600 font-medium">About</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block px-4 py-2 text-gray-600 hover:text-purple-600">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <button class="hidden md:block px-4 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition">
+                    Create Event
+                </button>
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Discover Amazing Events</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Find and book tickets to concerts, workshops, sports events and more in your city</p>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-1">
+                <div class="flex flex-col md:flex-row">
+                    <div class="flex-1 p-2">
+                        <input type="text" placeholder="Search events..." class="w-full px-4 py-3 rounded-lg border-0 text-gray-800 search-input">
+                    </div>
+                    <div class="flex-1 p-2">
+                        <select class="w-full px-4 py-3 rounded-lg border-0 text-gray-800">
+                            <option value="">All Categories</option>
+                            <option value="music">Music</option>
+                            <option value="sports">Sports</option>
+                            <option value="arts">Arts & Theater</option>
+                            <option value="food">Food & Drink</option>
+                            <option value="tech">Technology</option>
+                        </select>
+                    </div>
+                    <div class="p-2">
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition">
+                            <i class="fas fa-search mr-2"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8 text-center">Browse by Category</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="category-chip px-6 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-purple-600 hover:text-white">
+                    <i class="fas fa-music mr-2"></i> Music
+                </button>
+                <button class="category-chip px-6 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-purple-600 hover:text-white">
+                    <i class="fas fa-running mr-2"></i> Sports
+                </button>
+                <button class="category-chip px-6 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-purple-600 hover:text-white">
+                    <i class="fas fa-paint-brush mr-2"></i> Arts
+                </button>
+                <button class="category-chip px-6 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-purple-600 hover:text-white">
+                    <i class="fas fa-utensils mr-2"></i> Food
+                </button>
+                <button class="category-chip px-6 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-purple-600 hover:text-white">
+                    <i class="fas fa-laptop-code mr-2"></i> Tech
+                </button>
+                <button class="category-chip px-6 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-purple-600 hover:text-white">
+                    <i class="fas fa-graduation-cap mr-2"></i> Education
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">Popular Events</h2>
+                <div class="flex space-x-2">
+                    <button class="px-4 py-2 bg-white rounded-lg shadow-sm text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-filter mr-2"></i> Filters
+                    </button>
+                    <button class="px-4 py-2 bg-white rounded-lg shadow-sm text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Location
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="events-container">
+                <!-- Event cards will be dynamically inserted here -->
+            </div>
+            
+            <div class="text-center mt-8">
+                <button class="px-6 py-3 bg-white text-purple-600 font-medium rounded-lg shadow-sm hover:bg-gray-50 border border-purple-600">
+                    Load More Events
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Event Banner -->
+    <section class="py-12 bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <div class="date-badge inline-block px-4 py-2 rounded-full mb-4">
+                        <span class="font-bold">JUL 15, 2023</span>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Summer Music Festival</h2>
+                    <p class="text-lg mb-6">Join us for the biggest music event of the year featuring top artists from around the world.</p>
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Central Park, New York</span>
+                    </div>
+                    <button class="px-8 py-3 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition">
+                        Get Tickets Now
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-4 -left-4 w-32 h-32 bg-purple-300 rounded-lg opacity-20"></div>
+                        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-indigo-300 rounded-lg opacity-20"></div>
+                        <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Summer Music Festival" 
+                             class="relative rounded-lg shadow-xl w-full h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8 text-center">What Our Users Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Found amazing tickets to my favorite band's concert. The booking process was super smooth!"</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The event recommendations are spot on. I've discovered so many new experiences through Specify."</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">David Wilson</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Great customer service when I had an issue with my tickets. They resolved it within hours!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4">Never Miss an Event Again</h2>
+            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Subscribe to our newsletter and get personalized event recommendations straight to your inbox.</p>
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-l-lg border-0 focus:outline-none">
+                <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-r-lg font-medium transition">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-calendar-alt text-2xl text-purple-400"></i>
+                        <span class="text-xl font-bold">Specify</span>
+                    </div>
+                    <p class="text-gray-400">Discover and book amazing events in your city.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Safety</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cancellation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Download our app</p>
+                    <div class="flex space-x-2 mt-2">
+                        <button class="px-3 py-1 bg-gray-700
